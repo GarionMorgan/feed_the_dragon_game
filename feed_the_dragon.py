@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 
 #initialize pygame
 pygame.init()
@@ -39,10 +39,26 @@ title_rect.y = 10
 lives_text = font.render("Lives: " + str(player_lives))
 lives_rect = lives_text.get_rect()
 lives_rect.topright = (WINDOW_WIDTH - 10, 10)
+game_over_text = font.render("GAMEOVER", True, GREEN, DARKGREEN)
+game_over_rect = game_over_text.get_rect()
+game_over_rect.center = (WINDOW_WIDTH//2,WINDOW_HEIGHT//2)
+continue_text = font.render("Press any key to play again", True, GREEN,DARKGREEN)
+continue_rect = continue_text.get_rect()
+continue_rect.center = (WINDOW_WIDTH//2,WINDOW_HEIGHT//2 + 32)
 #set sounds and music
-
+coin_sound = pygame.mixer.Sound("./feed_the_dragon_assets/coin_sound.wav")
+miss_sound = pygame.mixer.Sound("./feed_the_dragon_assets/miss_sound.wav")
+miss_sound.set_volume(.1)
+pygame.mixer.music.load("./feed_the_dragon_assets/ftd_background_music.wav")
 #set images
-
+player_image = pygame.image.load("./feed_the_dragon_assets/dragon_right.png")
+player_rect = player_image.get_rect()
+player_rect.left = 32
+player_rect.centery = WINDOW_HEIGHT//2
+coin_image = pygame.image.load("./feed_the_dragon_assets/coin.png")
+coin_rect = coin_image.get_rect()
+coin_rect.x = WINDOW_WIDTH + BUFFER_DISTANCE
+coin_rect.y = random.randint(64, WINDOW_HEIGHT - 32)
 #the main game loop
 running = True
 while running:
