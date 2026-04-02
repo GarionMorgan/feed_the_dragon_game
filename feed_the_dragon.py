@@ -36,7 +36,7 @@ title_text = font.render("Feed the Dragon", True, GREEN, WHITE)
 title_rect = title_text.get_rect()
 title_rect.centerx = WINDOW_WIDTH//2
 title_rect.y = 10
-lives_text = font.render("Lives: " + str(player_lives))
+lives_text = font.render("Lives: " + str(player_lives), True, GREEN, DARKGREEN)
 lives_rect = lives_text.get_rect()
 lives_rect.topright = (WINDOW_WIDTH - 10, 10)
 game_over_text = font.render("GAMEOVER", True, GREEN, DARKGREEN)
@@ -66,6 +66,23 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            
+    #fill display
+    display_surface.fill(BLACK)
+
+    #Blit HUD to screen
+    display_surface.blit(score_text, score_rect)
+    display_surface.blit(title_text, title_rect)
+    display_surface.blit(lives_text, lives_rect)
+    pygame.draw.line(display_surface, WHITE, (0,64), (WINDOW_WIDTH, 64), 2)
+
+    #blit assests to screen
+    display_surface.blit(player_image, player_rect)
+    display_surface.blit(coin_image, coin_rect)
+
+    #Update display and clock
+    pygame.display.update()
+    clock.tick(FPS)
 
 #end game
 pygame.quit()
