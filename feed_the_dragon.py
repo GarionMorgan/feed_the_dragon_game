@@ -75,6 +75,17 @@ while running:
         player_rect.y -= PLAYER_VELOCITY
     if keys[pygame.K_DOWN] and player_rect.bottom < WINDOW_HEIGHT:
         player_rect.y += PLAYER_VELOCITY
+
+    #move coin
+    if coin_rect.x < 0:
+        #player missed coin
+        player_lives -= 1
+        miss_sound.play()
+        coin_rect.x = WINDOW_WIDTH + BUFFER_DISTANCE
+        coin_rect.y = random.randint(64, WINDOW_HEIGHT - 32)
+    else:
+        #move coin
+        coin_rect.x -= coin_velocity
     #fill display
     display_surface.fill(BLACK)
 
