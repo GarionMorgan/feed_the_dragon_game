@@ -86,6 +86,14 @@ while running:
     else:
         #move coin
         coin_rect.x -= coin_velocity
+
+    #check for collision
+    if player_rect.colliderect(coin_rect):
+        score += 1
+        coin_sound.play()
+        coin_velocity += COIN_ACCELERATION
+        coin_rect.x = WINDOW_WIDTH + BUFFER_DISTANCE
+        coin_rect.y = random.randint(64, WINDOW_HEIGHT - 32)
     #fill display
     display_surface.fill(BLACK)
 
