@@ -94,6 +94,11 @@ while running:
         coin_velocity += COIN_ACCELERATION
         coin_rect.x = WINDOW_WIDTH + BUFFER_DISTANCE
         coin_rect.y = random.randint(64, WINDOW_HEIGHT - 32)
+
+    #Update HUD
+    score_text = font.render("Score: " +str(score), True, GREEN, DARKGREEN)
+    lives_text = font.render("Lives: " +str(player_lives), True, GREEN, DARKGREEN)
+    
     #fill display
     display_surface.fill(BLACK)
 
