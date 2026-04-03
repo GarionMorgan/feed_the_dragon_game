@@ -60,6 +60,7 @@ coin_rect = coin_image.get_rect()
 coin_rect.x = WINDOW_WIDTH + BUFFER_DISTANCE
 coin_rect.y = random.randint(64, WINDOW_HEIGHT - 32)
 #the main game loop
+pygame.mixer.music.play(-1,0.0)
 running = True
 while running:
     #check to see if user wants to quit
@@ -67,6 +68,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
             
+
+    #check to see if user wants to move
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP] and player_rect.top > 64:
+        player_rect.y -= PLAYER_VELOCITY
+    if keys[pygame.K_DOWN] and player_rect.bottom < WINDOW_HEIGHT:
+        player_rect.y += PLAYER_VELOCITY
     #fill display
     display_surface.fill(BLACK)
 
